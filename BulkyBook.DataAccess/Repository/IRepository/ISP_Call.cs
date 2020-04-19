@@ -10,18 +10,18 @@ namespace BulkyBook.DataAccess.Repository.IRepository
     {
         // NOTE: installing dapper for dynamic parameters usage here:
         // Retreive a single record: (returns integer or boolean value)
-        T Single<T>(string proceedureName, DynamicParameters param = null);
+        T Single<T>(string procedureName, DynamicParameters param = null);
 
         // Execute something to the db without retreiving anything:
-        void Execute(string proceedureName, DynamicParameters param = null);
+        void Execute(string procedureName, DynamicParameters param = null);
 
         // Retrieve one complete row/record: (returns a complete row):
-        T OneRecord<T>(string proceedureName, DynamicParameters param = null);
+        T OneRecord<T>(string procedureName, DynamicParameters param = null);
 
         // Retreive all the rows:
-        IEnumerable<T> List<T>(string proceedureName, DynamicParameters param = null);
+        IEnumerable<T> List<T>(string procedureName, DynamicParameters param = null);
 
         // Stored proceedure that returns two tables
-        Tuple<IEnumerable<T1>, IEnumerable<T2>> List<T1, T2>(string proceedureName, DynamicParameters param = null);
+        Tuple<IEnumerable<T1>, IEnumerable<T2>> List<T1, T2>(string procedureName, DynamicParameters param = null);
     }
 }
