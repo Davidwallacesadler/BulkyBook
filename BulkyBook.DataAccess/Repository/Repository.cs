@@ -10,6 +10,8 @@ using System.Text;
 
 namespace BulkyBook.DataAccess.Repository
 {
+    // This is generic becuase we will be using this repository for every class that we will add to the DB.
+    // NOTE: There is no update in this generic implementation - this will belong to individual object repository implementations.
     public class Repository<T> : IRepository<T> where T : class
     {
 
@@ -56,6 +58,7 @@ namespace BulkyBook.DataAccess.Repository
             {
                 return orderBy(query).ToList();
             }
+
             return query.ToList();
         }
 
