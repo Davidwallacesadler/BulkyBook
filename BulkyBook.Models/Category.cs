@@ -15,5 +15,10 @@ namespace BulkyBook.Models
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+
+        // We will use a repository here that will allow for common accessing methods for the DB.
+        // This has 2 parts:
+            // 1 - The IRepository: this is an interface (protocol) with the generic method definitions
+            // 2 - The Repository: this class will provide the implementation of the repository interface methods
     }
 }
