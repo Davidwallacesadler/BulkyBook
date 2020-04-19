@@ -17,7 +17,7 @@ namespace BulkyBook.DataAccess.Repository.IRepository
         // Get All: ( NOTE: this method returns the IEnumerable Interface here, hence we are defining more default methods here such as filter, orderby...)
         IEnumerable<T> GetAll(
             // Get all / filter: (NOTE: syntax => Func<Input, Return>)
-            Expression<Func<T, bool>> fitler = null,
+            Expression<Func<T, bool>> filter = null,
             // Order by:
             Func<IQueryable<T>, IQueryable<T>> orderBy = null,
             // Include properties used by eager loading:
@@ -27,7 +27,7 @@ namespace BulkyBook.DataAccess.Repository.IRepository
         // Get First or Defualt:
         T GetFirstOrDefault(
             // Get all / filter: (NOTE: syntax => Func<Input, Return>)
-            Expression<Func<T, bool>> fitler = null,
+            Expression<Func<T, bool>> filter = null,
             // Include properties used by eager loading:
             string includeProperties = null
             );
