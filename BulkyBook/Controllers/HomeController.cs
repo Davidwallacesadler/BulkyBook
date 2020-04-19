@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using BulkyBook.Models;
+using BulkyBook.Models.ViewModels;
 
 namespace BulkyBook.Controllers
 {
@@ -20,11 +20,13 @@ namespace BulkyBook.Controllers
 
         public IActionResult Index()
         {
+            // Returns the Index view (that belongs to the Home Folder):
             return View();
         }
 
         public IActionResult Privacy()
         {
+            // Returns the Privacy view (that belongs to the Home Folder):
             return View();
         }
 
