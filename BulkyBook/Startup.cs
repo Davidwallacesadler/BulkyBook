@@ -39,7 +39,6 @@ namespace BulkyBook
             // Repository and Unit of work setup: (this will be added to the project as dependency injection)
             // This makes it so in any controller we can access the unit of work and it's functionality.
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
             // MVC Controllers with Views setup with added razorpages runtime compilation:
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             // Razor pages setup: (Used for Areas)
