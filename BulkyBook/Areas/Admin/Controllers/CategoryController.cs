@@ -43,6 +43,30 @@ namespace BulkyBook.Areas.Admin.Controllers
             return View(category);
         }
 
+        // NOTE: when the user creates or updates in the upsert view we will be using the HttpPost method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Upsert(Category category)
+        {
+            // Checks all the validations in the model
+            // We are doing this here on top of the validation scripts within the view as a double layer of authentication
+            if(ModelState.IsValid)
+            {
+                if (category.Id == 0)
+                {
+                    _unitOfWork.Category.Add(category);
+                }
+                else
+                {
+                    _unitOfWork.Category.Update(category);
+                }
+                _unitOfWork.Save();
+                // NOTE: To avoid using magic strings, can use the nameof method:
+                return RedirectToAction(nameof(Index));
+            }
+            return View(category);
+        }
+
         // NOTE: We are using dataTables that are loaded with an API
         #region API Calls
         [HttpGet]
