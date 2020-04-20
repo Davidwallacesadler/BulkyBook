@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyBook.Areas.Admin.Controllers
@@ -23,6 +24,23 @@ namespace BulkyBook.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Upsert(int? id)
+        {
+            Category category = new Category();
+            if (id == null)
+            {
+                // Create:
+                return View(category);
+            }
+            // Edit:
+            category = _unitOfWork.Category.Get(id.GetValueOrDefault());
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
         }
 
         // NOTE: We are using dataTables that are loaded with an API
