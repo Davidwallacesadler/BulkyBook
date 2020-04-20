@@ -13,7 +13,9 @@ namespace BulkyBook.DataAccess.Data
             : base(options)
         {
         }
-        // We have to define that the category class must be pushed to the database
+        // push the category class to the database:
         public DbSet<Category> Categories { get; set; }
+        // push the cover type class to the database: 
+        public DbSet<CoverType> CoverTypes { get; set; }
     }
 }

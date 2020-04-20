@@ -1,5 +1,6 @@
 ﻿using BulkyBook.DataAccess.Data;
 using BulkyBook.DataAccess.Repository.IRepository;
+using BulkyBook.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,12 +18,15 @@ namespace BulkyBook.DataAccess.Repository
             // Initialize repositories:
             // Category:
             Category = new CategoryRepository(_db);
+            // CoverType:
+            CoverType = new CoverTypeRepository(_db);
             // Stored Procedures:
             SP_Call = new SP_Call(_db);
         }
 
         // Initialize repository interfaces:
         // NOTE: this is a private set that is set in the constructor of the unit of work
+        public ICoverTypeRepository CoverType { get; private set; }
         public ICategoryRepository Category { get; private set; }
         public ISP_Call SP_Call { get; private set; }
 
