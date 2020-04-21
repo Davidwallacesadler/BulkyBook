@@ -20,6 +20,8 @@ namespace BulkyBook.DataAccess.Repository
             Category = new CategoryRepository(_db);
             // CoverType:
             CoverType = new CoverTypeRepository(_db);
+            // Product:
+            Product = new ProductRepository(_db);
             // Stored Procedures:
             SP_Call = new SP_Call(_db);
         }
@@ -28,6 +30,7 @@ namespace BulkyBook.DataAccess.Repository
         // NOTE: this is a private set that is set in the constructor of the unit of work
         public ICoverTypeRepository CoverType { get; private set; }
         public ICategoryRepository Category { get; private set; }
+        public IProductRepository Product { get; private set; }
         public ISP_Call SP_Call { get; private set; }
 
         public void Dispose()
