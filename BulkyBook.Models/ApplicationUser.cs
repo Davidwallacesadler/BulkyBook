@@ -18,10 +18,14 @@ namespace BulkyBook.Models
         public string City { get; set; }
         public string State { get; set; }
         public string PostalCode { get; set; }
+        public int? CompanyId { get; set; }
 
         // Not mapped data annotation means this will not be added to our db
         // We are not mapping this because...?
         [NotMapped]
         public string Role { get; set; }
+
+        [ForeignKey("CompanyId")]
+        public Company Company { get; set; }
     }
 }
