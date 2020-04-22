@@ -24,12 +24,15 @@ namespace BulkyBook.DataAccess.Repository
             Product = new ProductRepository(_db);
             // Stored Procedures:
             SP_Call = new SP_Call(_db);
-
+            // Company:
             Company = new CompanyRepository(_db);
+            // Application User:
+            ApplicationUser = new ApplicationUserRepository(_db);
         }
 
         // Initialize repository interfaces:
         // NOTE: this is a private set that is set in the constructor of the unit of work
+        public IApplicationUserRepository ApplicationUser { get; private set; }
         public ICoverTypeRepository CoverType { get; private set; }
         public ICategoryRepository Category { get; private set; }
         public IProductRepository Product { get; private set; }
