@@ -18,5 +18,6 @@ namespace BulkyBook.DataAccess.Data
         // push the cover type class to the database: 
         public DbSet<CoverType> CoverTypes { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
