@@ -7,6 +7,7 @@ namespace BulkyBook.DataAccess.Repository.IRepository
     // This is a wrapper for the repository interfaces:
     public interface IUnitOfWork : IDisposable
     {
+        ICompanyRepository Company { get; }
         ICoverTypeRepository CoverType { get; }
         ICategoryRepository Category { get; }
         IProductRepository Product { get; }
