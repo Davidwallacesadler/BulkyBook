@@ -44,6 +44,10 @@ namespace BulkyBook
             // Registering our EmailSender Class:
             services.AddSingleton<IEmailSender, EmailSender>();
 
+            // Configure our EmailOptions class with the sendGrid keys from appsettings
+            // NOTE: this configuration method will try and match up whatever keys we had in the app settings with properties in our email options.
+            services.Configure<EmailOptions>(Configuration);
+
             // Repository and Unit of work setup: (this will be added to the project as dependency injection)
             // This makes it so in any controller we can access the unit of work and it's functionality.
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -67,6 +71,14 @@ namespace BulkyBook
             {
                 options.AppId = "901015027037493";
                 options.AppSecret = "8ed72993a5e0a0463746c5002d0467d7";
+            });
+
+            // Setup google authentication:
+            services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = "272211179688-9cu7en6lcqn7cpb1dck96chd9aage41b.apps.googleusercontent.com";
+                options.ClientSecret = "D3ryg_yLgMMAcc0YeV-hHoo3";
+
             });
         }
 
