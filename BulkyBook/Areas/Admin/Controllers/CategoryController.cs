@@ -4,12 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
+using BulkyBook.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyBook.Areas.Admin.Controllers
 {
     // REMEMBER: Always specify the area!
     [Area("Admin")]
+    // We can control who has access to this area usnig the authorize data annotation
+    // NOTE: We can add this annotation at action method level as well
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

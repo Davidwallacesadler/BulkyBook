@@ -16,6 +16,7 @@ using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.DataAccess.Repository;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using BulkyBook.Utility;
+using Microsoft.CodeAnalysis.Options;
 
 namespace BulkyBook
 {
@@ -52,6 +53,14 @@ namespace BulkyBook
 
             // Razor pages setup: (Used for Areas)
             services.AddRazorPages();
+
+            // Congfigure redirection if the user attempts to access a page in outside of their area
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
 
         }
 
