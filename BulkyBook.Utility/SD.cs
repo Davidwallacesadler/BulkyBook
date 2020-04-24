@@ -22,5 +22,52 @@ namespace BulkyBook.Utility
         public const string Role_Admin = "Admin";
         public const string Role_Employee = "Employee";
         #endregion
+
+        public static double GetPriceBasedOnQuanitity(double quantity, double price, double price50, double price100)
+        {
+            if (quantity < 50)
+            {
+                return price;
+            }
+            else
+            {
+                if (quantity <100)
+                {
+                    return price50;
+                }
+                else
+                {
+                    return price100;
+                }
+            }
+        }
+
+        public static string ConvertToRawHtml(string source)
+        {
+            char[] array = new char[source.Length];
+            int arrayIndex = 0;
+            bool inside = false;
+
+            for (int i = 0; i < source.Length; i++)
+            {
+                char letter = source[i];
+                if (letter == '<')
+                {
+                    inside = true;
+                    continue;
+                }
+                if (letter=='>')
+                {
+                    inside = false;
+                    continue;
+                }
+                if (!inside)
+                {
+                    array[arrayIndex] = letter;
+                    arrayIndex++;
+                }
+            }
+            return new string(array, 0, arrayIndex);
+        }
     }
 }
