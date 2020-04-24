@@ -11,6 +11,7 @@ using BulkyBook.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using BulkyBook.Utility;
+using Microsoft.AspNetCore.Http;
 
 namespace BulkyBook.Areas.Customer.Controllers
 {
@@ -31,6 +32,16 @@ namespace BulkyBook.Areas.Customer.Controllers
         {
             // Returns the Index view (that belongs to the Home Folder):
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim!=null)
+            {
+                // user has logged in
+                var count = _unitOfWork.ShoppingCart.GetAll(c => c.ApplicationUserId == claim.Value).ToList().Count();
+                // NOTE: can use our custom Set object class or we can just use the built in setInt32
+                //HttpContext.Session.SetObject(SD.ssShoppingCart, count);
+                HttpContext.Session.SetInt32(SD.ssShoppingCart, count);
+            } 
             return View(productList);
         }
 
@@ -61,6 +72,7 @@ namespace BulkyBook.Areas.Customer.Controllers
             if (ModelState.IsValid)
             {
                 //then we will add to cart
+                // NOTE: this logic checks the identity of the logged in user
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
                 CartObject.ApplicationUserId = claim.Value;
