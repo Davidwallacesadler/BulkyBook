@@ -23,6 +23,8 @@ namespace BulkyBook.Utility
         public const string Role_Employee = "Employee";
         #endregion
 
+        public const string ssShoppingCart = "Shopping Cart Session";
+
         public static double GetPriceBasedOnQuanitity(double quantity, double price, double price50, double price100)
         {
             if (quantity < 50)
